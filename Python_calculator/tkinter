@@ -1,0 +1,32 @@
+import tkinter as tk
+calculation=""
+def add_To_Calculation(x):
+    global calculation
+    calculation+= str(x)
+    textfield_Result.delete(1.0,"end")
+    textfield_Result.insert(1.0,calculation)
+
+def evaluate_Calculation():
+    global calculation
+    try:
+        calculation=str(eval(calculation))
+        textfield_Result.delete(1.0,"end")
+        textfield_Result.insert(1.0,calculation)
+    except:
+     clear_Field()
+     textfield_Result.insert(1.0,"Error")
+     pass
+def clear_Field():
+   global calculation
+   calculation=""
+   textfield_Result.delete(1.0,"end")
+
+
+root=tk.Tk()
+root.geometry("300x275")
+
+textfield_Result=tk.Text(root,height=2,width=16,font=("Arial",24))
+textfield_Result.grid(columnspan=5)
+
+btn_1=tk.Button(root,text="1",command=lambda:add_To_Calculation(1),width=5,font=("Arial",14))
+root.mainloop()
